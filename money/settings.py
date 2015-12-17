@@ -48,6 +48,7 @@ INSTALLED_APPS = (
     'authsys',
     'djcelery',
     'djkombu',
+    'bootstrapform'
 )
 
 MIDDLEWARE_CLASSES = (

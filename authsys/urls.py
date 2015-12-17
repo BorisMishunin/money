@@ -15,11 +15,8 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from web import urls as web_urls
-from authsys import urls as authsys_urls
 
-urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^auth/', include(authsys_urls)),
-    url(r'^$', include(web_urls))
+urlpatterns = [      
+    url(r'^logout/', 'authsys.views.logout'),
+    url(r'^login/', 'authsys.views.login'),
 ]
