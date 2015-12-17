@@ -1,10 +1,12 @@
 from django.db import models
+from django.contrib.auth.models import User
 import datetime
 # Create your models here.
 
-
 class PaymentsType(models.Model):
     name = models.CharField('Название', max_length=150)
+    desc = models.TextField('Описание')
+    icon = models.ImageField('Иконка', upload_to='foto')
 
     class Meta:
         verbose_name = 'Вид платежа'
