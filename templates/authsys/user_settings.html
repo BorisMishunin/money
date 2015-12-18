@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load static from staticfiles %}
+{% load bootstrap %}
+
+{% block content %}
+
+   <div class="container title">
+       <div class = "row">
+           <h1>Название сайта</h1>
+       </div>
+   </div>
+
+    <div class="container">
+        <div class="row">
+            <p>Настройки пользователя</p>
+            <form method="post" action="/auth/login/">
+                {% csrf_token %}
+                {{form|bootstrap}}
+                <button class="btn btn-block btn-success">Авторизоваться</button>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

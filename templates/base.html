@@ -50,6 +50,13 @@
                             <li><a href="#">Пункт 3</a></li>
                             <li><a href="#">Пункт 4</a></li>
                         </ul>
+                        {% if user.is_authenticated %}
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="/auth/user_settings"><img src=  "{{ user_icon }}" width="50" height="50" class="img-responsive auth_img" alt=""></a></li>
+                            <li><a href="/auth/logout">Выход ({{ user.username }})</a></li>
+                        </ul>
+                        {% endif %}
+
                     </div>
                 </div>
    </div>

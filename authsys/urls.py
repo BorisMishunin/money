@@ -19,4 +19,5 @@ from django.contrib import admin
 urlpatterns = [      
     url(r'^logout/', 'authsys.views.logout'),
     url(r'^login/', 'authsys.views.login'),
+    url(r'^user_settings/', 'authsys.views.user_settings'),
 ]
