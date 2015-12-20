@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^logout/', 'authsys.views.logout'),
     url(r'^login/', 'authsys.views.login'),
     url(r'^user_settings/', 'authsys.views.user_settings'),
+    url(r'^add_user_settings/', 'authsys.views.add_user_settings'),
 ]

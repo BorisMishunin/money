@@ -13,11 +13,14 @@
     <div class="container">
         <div class="row">
             <p>Настройки пользователя</p>
-            <form method="post" action="/auth/login/">
+            <div class = "well col-sm-offset-2 col-sm-6">
+            <form method="post" action="/auth/add_user_settings/" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{form|bootstrap}}
+                {{user_form|bootstrap}}
+                {{settigs_form|bootstrap}}
                 <button class="btn btn-block btn-success">Авторизоваться</button>
             </form>
+            </div>
         </div>
     </div>
 

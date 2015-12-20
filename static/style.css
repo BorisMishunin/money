@@ -5,3 +5,8 @@
 .auth_img{
     border-radius: 50%;
 }
+
+.test{
+    border: 1px solid black;
+    height: 100px;
+}
