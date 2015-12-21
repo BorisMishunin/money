@@ -38,6 +38,7 @@ class UserForm(forms.ModelForm):
     def clean_last_name(self):
         data = self.cleaned_data['last_name']
         if data.strip() == '':
+            print('error', u"You must provide more than just whitespace.")
             raise forms.ValidationError(u"You must provide more than just whitespace.")
         return data
 

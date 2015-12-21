@@ -17,7 +17,10 @@
             <form method="post" action="/auth/add_user_settings/" enctype="multipart/form-data">
                 {% csrf_token %}
                 {{user_form|bootstrap}}
-                {{settigs_form|bootstrap}}
+                <div class="btn btn-info">
+                    <span>Файл</span>
+                    {{settigs_form.icon.file}}
+                </div>
                 <button class="btn btn-block btn-success">Авторизоваться</button>
             </form>
             </div>

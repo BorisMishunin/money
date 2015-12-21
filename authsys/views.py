@@ -27,14 +27,17 @@ def user_settings(request, settigs_form=None, user_form=None):
     params = {}
     params.update(csrf(request))
     if not settigs_form:
-        data = UserSettings.objects.filter(user__id = request.user.id).values()
-        if len(data)==0:
+        try:
+            data = UserSettings.objects.get(user__id = request.user.id)
+        except:
+            data = None
+        if not data:
             settigs_form= UserSettingsForm()
         else:
-            settigs_form= UserSettingsForm(initial=data[0], files=data[0])
+            settigs_form= UserSettingsForm(instance=data)
     if not user_form:
-        data = User.objects.filter(id = request.user.id).values()
-        user_form= UserForm(initial=data[0])
+        data = User.objects.get(id = request.user.id)
+        user_form= UserForm(instance=data)
     params['settigs_form'] = settigs_form
     params['user_form'] = user_form
     return render_to_response('authsys/user_settings.html', params)
@@ -42,6 +45,7 @@ def user_settings(request, settigs_form=None, user_form=None):
 def add_user_settings(request):
     if request.method == 'POST':
         settigs_form = UserSettingsForm(request.POST, request.FILES)
+        print(request.FILES)
         user_form = UserForm(request.POST, request.FILES)
         if settigs_form.is_valid() and user_form.is_valid():
             settigs_form.save()
@@ -50,5 +54,5 @@ def add_user_settings(request):
         params={}
         params['settigs_form'] = UserSettingsForm()
         params['user_form'] = UserForm()
-        return render(request, 'authsys/user_settings.html', params)
-        #return user_settings(request, settigs_form=settigs_form, user_form=user_form)
+        #return render(request, 'authsys/user_settings.html', params)
+        return user_settings(request, settigs_form=settigs_form, user_form=user_form)
