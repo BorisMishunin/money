@@ -20,6 +20,7 @@ class Payments(models.Model):
     month = models.DateTimeField('Месяц')
     payment = models.ForeignKey(PaymentsType, verbose_name='Вид платежа')
     total = models.IntegerField('Сумма')
+    author = models.ForeignKey(User, verbose_name="Автор")
 
     class Meta:
         verbose_name = 'Платеж'
