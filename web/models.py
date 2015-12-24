@@ -27,7 +27,7 @@ class Payments(models.Model):
         verbose_name_plural = 'Платежи'
 
     def __str__(self):
-        return '%s - %s' %(self.mounth,self.payment.namе)
+        return '%s - %s' %(self.month,self.payment.name)
 
 class Goods(models.Model):
     name = models.CharField('Название', max_length=150)

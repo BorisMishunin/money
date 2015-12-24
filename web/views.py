@@ -1,12 +1,10 @@
-from django.shortcuts import render, render_to_response
+from django.shortcuts import render_to_response
+from django.template.context_processors import csrf
 from authsys.forms import AuthForm
 from authsys.models import UserSettings
-from django.template.context_processors import csrf
-from web.models import PaymentsType
+from web.models import PaymentsType, Payments
 
-from django.contrib.auth.models import User, Group
-from rest_framework import viewsets
-from .serializers import UserSerializer, GroupSerializer
+
 
 def index(request, form=None):
     if not form:
@@ -25,18 +23,3 @@ def index(request, form=None):
     params['user_icon'] = user_icon;
     params['payment_types'] = PaymentsType.objects.all()
     return render_to_response('web/index.html', params)
-
-class UserViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows users to be viewed or edited.
-    """
-    queryset = User.objects.all().order_by('-date_joined')
-    serializer_class = UserSerializer
-
-
-class GroupViewSet(viewsets.ModelViewSet):
-    """
-    API endpoint that allows groups to be viewed or edited.
-    """
-    queryset = Group.objects.all()
-    serializer_class = GroupSerializer

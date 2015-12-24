@@ -15,28 +15,12 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from web import urls as web_urls
-from authsys import urls as authsys_urls
-from web_api import urls as web_api_urls
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
-from django.conf import settings
-from django.conf.urls.static import static
+from web_api import views
+from rest_framework.urlpatterns import format_suffix_patterns
 
 urlpatterns = [
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^auth/', include(authsys_urls)),
-    url(r'^api/', include(web_api_urls)),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
-    url(r'^$', include(web_urls)),
+    url(r'^payments/$', views.payment_list),
+    url(r'^payments/(?P<pk>[0-9]+)/$', views.payment_detail),
 ]
 
-
-if settings.DEBUG:
-
-    if settings.MEDIA_ROOT:
-
-        urlpatterns += static(settings.MEDIA_URL,
-
-            document_root=settings.MEDIA_ROOT)
-
-urlpatterns += staticfiles_urlpatterns()
+urlpatterns = format_suffix_patterns(urlpatterns)
