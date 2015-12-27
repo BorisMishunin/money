@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import datetime
+from django.utils import timezone
 # Create your models here.
 
 class PaymentsType(models.Model):
@@ -16,8 +17,8 @@ class PaymentsType(models.Model):
         return self.name
 
 class Payments(models.Model):
-    date = models.DateTimeField('Дата', default=datetime.datetime.now())
-    month = models.DateTimeField('Месяц')
+    date = models.DateTimeField('Дата', default=timezone.now)
+    month = models.DateTimeField('Месяц', default=timezone.now)
     payment = models.ForeignKey(PaymentsType, verbose_name='Вид платежа')
     total = models.IntegerField('Сумма')
     author = models.ForeignKey(User, verbose_name="Автор")
