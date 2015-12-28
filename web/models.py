@@ -42,7 +42,7 @@ class Goods(models.Model):
         return self.name
 
 class PaymentsTranscript(models.Model):
-    payment = models.ForeignKey(Payments, verbose_name='Платеж')
+    payment = models.ForeignKey(Payments, verbose_name='Платеж', related_name='payments_transcript')
     payment_good = models.ForeignKey(Goods, verbose_name='Товар или услуга')
     quantity = models.IntegerField('Количество')
     price = models.IntegerField('Цена')

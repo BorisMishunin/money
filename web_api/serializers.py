@@ -9,8 +9,8 @@ class PaymentsTranscriptSerializer(serializers.ModelSerializer):
         model =PaymentsTranscript
         fields = '__all__'
 
-class PaymentsSerializer(serializers.HyperlinkedModelSerializer):
-    payments_transcript = serializers.StringRelatedField(many=True)
+class PaymentsSerializer(serializers.ModelSerializer):
+    payments_transcript = PaymentsTranscriptSerializer(many=True)
     class Meta:
         model = Payments
         fields = '__all__'
