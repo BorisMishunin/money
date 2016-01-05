@@ -10,7 +10,17 @@ class PaymentsTranscriptSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 class PaymentsSerializer(serializers.ModelSerializer):
-    payments_transcript = PaymentsTranscriptSerializer(many=True)
+    #payments_transcript = PaymentsTranscriptSerializer(many=True)
+    payment = serializers.SlugRelatedField(
+        many=False,
+        read_only=True,
+        slug_field='name'
+     )
+    author = serializers.SlugRelatedField(
+        many=False,
+        read_only=True,
+        slug_field='username'
+     )
     class Meta:
         model = Payments
         fields = '__all__'

@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% load static from staticfiles %}
 {% load bootstrap %}
-
+{% load web_extras %}
 {% block content %}
 
    <div class="container title">
@@ -24,27 +24,43 @@
         </div>
     </div>
     {% else %}
-        <div class="container">
+        <div class="container" ng-controller = "PhoneListCtrl">
             <div class="row">
             {% for type in payment_types %}
-                      <div class="col-xs-4">
+                      <div class="col-xs-{{len}}">
                         <a href="#" class="thumbnail">
                             <img src="{{type.icon.url}}" width="100" height="100" alt="...">
-                            <div class="caption visible-md visible-lg"><h3>{{type.name}}</h3></div>
+                            <div class="caption visible-md visible-lg"><h4>{{type.name}}</h4></div>
                         </a>
                     </div>
             {% endfor %}
             </div>
+            <input type="text" ng-model = 'name'>
+            hello {$ name $}
+            <div class = "row">
+                <div class="well col-xs-12">
 
+                </div>
+            </div>
             <table class="table table-bordered">
                 <thead>
                     <tr>
-                        <th>Дата</th> <th>Месяц</th> <th>Платеж</th> <th>Сумма</th> <th>Автор</th>
+                        {% table_head_tag "date" "Дата" %}
+                        {% table_head_tag "month" "Месяц" %}
+                        {% table_head_tag "payment" "Платеж" %}
+                        {% table_head_tag "total" "Сумма" %}
+                        {% table_head_tag "author" "Автор" %}
                     </tr>
                 </thead>
 
                 <tbody>
-                    <for></for>
+                    <tr ng-repeat = "payment in payments | orderBy:sortField:reverse | filter:{payment:name}">
+                        <td>{$ payment.date | date:'dd.MM.yyyy hh.mm.ss' $}</td>
+                        <td>{$ payment.month | date:'dd.MM.yyyy' $}</td>
+                        <td>{$ payment.payment $}</td>
+                        <td>{$ payment.total $}</td>
+                        <td>{$ payment.author $}</td>
+                    </tr>
                 </tbody>
 
             </table>

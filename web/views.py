@@ -12,7 +12,6 @@ def index(request, form=None):
     params = {}
     params.update(csrf(request))
     params['form'] = form
-    params['range'] = range(3)
     params['user'] = request.user
     user_icon = ''
     try:
@@ -20,6 +19,8 @@ def index(request, form=None):
         user_icon = user_settings.icon.url
     except:
         pass
-    params['user_icon'] = user_icon;
-    params['payment_types'] = PaymentsType.objects.all()
+    params['user_icon'] = user_icon
+    payments_type = PaymentsType.objects.all()
+    params['len'] = min(int(12/len(payments_type)), 12)
+    params['payment_types'] = payments_type
     return render_to_response('web/index.html', params)
