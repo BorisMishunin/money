@@ -18,6 +18,7 @@ from django.contrib import admin
 from web import urls as web_urls
 from authsys import urls as authsys_urls
 from web_api import urls as web_api_urls
+from fop import urls as fop_urls
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.conf import settings
 from django.conf.urls.static import static
@@ -27,6 +28,7 @@ urlpatterns = [
     url(r'^auth/', include(authsys_urls)),
     url(r'^api/', include(web_api_urls)),
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^fop/', include(fop_urls)),
     url(r'^$', include(web_urls)),
 ]
 

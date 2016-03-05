@@ -50,7 +50,8 @@ INSTALLED_APPS = (
     'djcelery',
     'djkombu',
     'bootstrapform',
-    'rest_framework'
+    'rest_framework',
+    'fop'
 )
 
 MIDDLEWARE_CLASSES = (
